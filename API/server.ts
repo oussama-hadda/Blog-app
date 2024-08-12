@@ -1,13 +1,14 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import sequelize from './config/database';
-import userRoutes from "./routes/userRoutes";
+import userRouter from "./routers/userRouter";
+import postRouter from "./routers/postRouter";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-app.use('/api', userRoutes);
+app.use('/api/users', userRouter);
 
 // app.get('/', async (req: Request, res: Response) => {
 //     try {
@@ -27,20 +28,7 @@ app.use('/api', userRoutes);
 // });
 
 
-// (async () => {
-//     try {
-//         await sequelize.authenticate();
-//         console.log('Database connection established.');
-//
-//         await User.drop();
-//         console.log('User table dropped!');
-//
-//     } catch (error) {
-//         console.error('Error:', error);
-//     }
-// })();
-
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ alter: true }).then(() => {
     console.log('Database synced');
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
