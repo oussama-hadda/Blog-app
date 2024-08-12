@@ -41,6 +41,16 @@ User.init(
             type: DataTypes.STRING(128),
             allowNull: false,
         },
+        // @ts-ignore
+        fullName: {
+            type: DataTypes.VIRTUAL,
+            get() {
+                return `${this.firstName} ${this.lastName}`;
+            },
+            set(value) {
+                throw new Error('Do not try to set the `fullName` value!');
+            },
+        },
         email: {
             type: DataTypes.STRING(128),
             allowNull: false,
@@ -88,10 +98,3 @@ Follow.belongsTo(User,
     {
         foreignKey: "followedId",
     });
-
-/*
-* Use aliases : as("author")
-* remove customized functions as they're built in
-* use built in functions in controllers
-* remove the explicit def of foreign keys when not needed
-*/
