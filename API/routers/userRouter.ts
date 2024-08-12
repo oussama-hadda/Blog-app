@@ -25,10 +25,10 @@ userRouter.post('/', createUserController);
 userRouter.get('/:id', getUserByIdController);
 userRouter.delete('/:id', deleteUserByIdController);
 
-userRouter.put('/:id/firstName', modifyUserFirstNameController);
-userRouter.put('/:id/lastName', modifyUserLastNameController);
-userRouter.put('/:id/password', modifyUserPasswordController);
-userRouter.put('/:id/description', modifyUserDescriptionController);
+userRouter.patch('/:id/firstName', modifyUserFirstNameController);
+userRouter.patch('/:id/lastName', modifyUserLastNameController);
+userRouter.patch('/:id/password', modifyUserPasswordController);
+userRouter.patch('/:id/description', modifyUserDescriptionController);
 
 userRouter.get('/:id/posts', getUserPostsController);
 userRouter.get('/:id/liked-posts', getUserLikedPostsController);

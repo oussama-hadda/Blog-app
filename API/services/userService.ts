@@ -3,7 +3,7 @@ import Post from "../models/Post";
 import Follow from "../models/Follow";
 import Interaction from "../models/Interaction";
 import {InteractionType, UserModifiableFieldsNames} from "../types/types";
-import {handleServiceError} from "../controllers/utils";
+import {handleUserServiceError} from "../controllers/utils";
 
 /* GET requests */
 
@@ -24,7 +24,7 @@ export const getUserPosts = async (userId: string) => {
     })
 
     if (userPosts.length === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return userPosts
@@ -47,7 +47,7 @@ export const getUserInteractedPosts = async (userId: string, type: InteractionTy
     })
 
     if (bookmarkedPosts.length === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return bookmarkedPosts
@@ -68,7 +68,7 @@ export const getUserFollowers = async (userId: string) => {
     })
 
     if (usersFollowers.length === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return usersFollowers
@@ -89,7 +89,7 @@ export const getUserFollowing = async (userId: string) => {
     })
 
     if (userFollowing.length === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return userFollowing
@@ -103,7 +103,7 @@ export const getUserFollowersNb = async (userId: string) => {
     })
 
     if (count === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return count
@@ -117,7 +117,7 @@ export const getUserFollowingNb = async (userId: string) => {
     })
 
     if (count === 0) {
-        await handleServiceError(userId);
+        await handleUserServiceError(userId);
     }
 
     return count

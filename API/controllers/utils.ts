@@ -14,21 +14,21 @@ import User from "../models/User";
  *
  * @param res - The Express response object.
  * @param error - The error object.
+ * @param entity - The entity we're trying to modify.
  */
-export function handleControllerError(res: Response, error: unknown) {
+export function handleControllerError(res: Response, error: unknown, entity: "User" | "Post" = "User") {
     if (error instanceof Error) {
-        if (error.message === 'User not found') {
-            res.status(404).json({ error: 'User not found' });
+        if (error.message === `${entity} not found`) {
+            res.status(404).json({error: `${entity} not found`});
         } else {
-            res.status(500).json({ error: `An error has occurred: ${error.message}` });
+            res.status(500).json({error: `An error has occurred: ${error.message}`});
         }
     } else {
-        res.status(500).json({ error: `An error has occurred: ${String(error)}` });
+        res.status(500).json({error: `An error has occurred: ${String(error)}`});
     }
 }
 
 export async function handleServiceError(userId: string) {
     const user = await User.findByPk(userId)
-    if (!user) throw new Error ('User not found')
+    if (!user) throw new Error('User not found')
 }
-

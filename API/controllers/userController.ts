@@ -261,4 +261,3 @@ export const deleteUserByIdController = async (req: Request, res: Response) => {
         res.status(500).json({error: 'An error has occurred:\n${error}`'});
     }
 }
-
