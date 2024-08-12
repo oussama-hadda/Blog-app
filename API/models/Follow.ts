@@ -32,7 +32,4 @@ Follow.init(
     }
 )
 
-Follow.belongsTo(User, {foreignKey: 'followerId'});
-Follow.belongsTo(User, {foreignKey: 'followedId'});
-
 export default Follow;

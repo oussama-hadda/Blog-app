@@ -1,8 +1,6 @@
 import {DataTypes, Model, Optional} from 'sequelize';
 import sequelize from '../config/database';
 import User from "./User";
-import Comment from "./Comment";
-import Interaction from "./Interaction";
 
 interface PostAttributes {
     id: string;
@@ -64,9 +62,5 @@ Post.init(
         sequelize
     }
 );
-
-Post.belongsTo(User, {foreignKey: 'postId'});
-Post.hasMany(Comment, { foreignKey: 'postId' });
-Post.hasMany(Interaction, { foreignKey: 'postId' });
 
 export default Post;

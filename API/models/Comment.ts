@@ -60,7 +60,4 @@ Comment.init(
     }
 )
 
-Comment.belongsTo(User, {foreignKey: 'userId'});
-Comment.belongsTo(Post, {foreignKey: 'postId'});
-
 export default Comment;

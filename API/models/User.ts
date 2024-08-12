@@ -1,9 +1,5 @@
 import {DataTypes, Model, Optional} from 'sequelize';
 import sequelize from '../config/database';
-import Post from "./Post";
-import Comment from "./Comment";
-import Interaction from "./Interaction";
-import Follow from "./Follow";
 
 interface UserAttributes {
     id: string;
@@ -13,7 +9,6 @@ interface UserAttributes {
     password: string;
     description: string;
 }
-
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {
 }
@@ -26,7 +21,6 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
     public password!: string;
     public description!: string;
 }
-
 
 User.init(
     {
@@ -59,14 +53,7 @@ User.init(
     },
     {
         sequelize,
-        tableName: 'users',
     }
 );
-
-User.hasMany(Post, { foreignKey: 'userId' });
-User.hasMany(Comment, { foreignKey: 'userId' });
-User.hasMany(Interaction, { foreignKey: 'userId' });
-User.hasMany(Follow, { foreignKey: 'followerId' });
-User.hasMany(Follow, { foreignKey: 'followedId' });
 
 export default User;

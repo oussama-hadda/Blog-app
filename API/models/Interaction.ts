@@ -61,8 +61,4 @@ Interaction.init(
     }
 )
 
-
-Interaction.belongsTo(User, {foreignKey: 'userId'});
-Interaction.belongsTo(Post, {foreignKey: 'postId'});
-
 export default Interaction;
