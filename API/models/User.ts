@@ -1,5 +1,9 @@
 import {DataTypes, Model, Optional} from 'sequelize';
 import sequelize from '../config/database';
+import Post from "./Post";
+import Comment from "./Comment";
+import Interaction from "./Interaction";
+import Follow from "./Follow";
 
 interface UserAttributes {
     id: string;
@@ -10,7 +14,7 @@ interface UserAttributes {
     description: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {
+export interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {
 }
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
@@ -47,7 +51,7 @@ User.init(
             allowNull: true,
         },
         description: {
-            type: DataTypes.STRING(512),
+            type: DataTypes.TEXT,
             allowNull: true,
         },
     },
@@ -57,3 +61,37 @@ User.init(
 );
 
 export default User;
+
+User.hasMany(Post);
+Post.belongsTo(User);
+
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+User.hasMany(Interaction);
+Interaction.belongsTo(User);
+
+User.hasMany(Follow,
+    {
+        foreignKey: "followerId",
+    });
+Follow.belongsTo(User,
+    {
+        foreignKey: "followerId",
+    });
+
+User.hasMany(Follow,
+    {
+        foreignKey: "followedId",
+    });
+Follow.belongsTo(User,
+    {
+        foreignKey: "followedId",
+    });
+
+/*
+* Use aliases : as("author")
+* remove customized functions as they're built in
+* use built in functions in controllers
+* remove the explicit def of foreign keys when not needed
+*/

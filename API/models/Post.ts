@@ -1,6 +1,7 @@
 import {DataTypes, Model, Optional} from 'sequelize';
 import sequelize from '../config/database';
-import User from "./User";
+import Comment from "./Comment";
+import Interaction from "./Interaction";
 
 interface PostAttributes {
     id: string;
@@ -8,7 +9,6 @@ interface PostAttributes {
     content: string;
     category: string;
     tags: string[];
-    userId: string;
 }
 
 interface PostCreationAttributes extends Optional<PostAttributes, 'id'> {
@@ -20,11 +20,6 @@ class Post extends Model<PostAttributes, PostCreationAttributes> implements Post
     public content!: string;
     public category!: string;
     public tags!: string[];
-    public userId!: string;
-
-    public getUser() {
-        return User.findByPk(this.userId);
-    }
 }
 
 Post.init(
@@ -39,7 +34,7 @@ Post.init(
             allowNull: false,
         },
         content: {
-            type: DataTypes.STRING(4096),
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         category: {
@@ -50,17 +45,17 @@ Post.init(
             type: DataTypes.JSON,
             allowNull: true,
         },
-        userId: {
-            type: DataTypes.UUID,
-            references: {
-                model: User,
-                key: 'id',
-            },
-            allowNull: false,
-        },
     }, {
         sequelize
     }
 );
 
 export default Post;
+
+
+Post.hasMany(Comment);
+Comment.belongsTo(Post);
+
+Post.hasMany(Interaction);
+Interaction.belongsTo(Post);
+
