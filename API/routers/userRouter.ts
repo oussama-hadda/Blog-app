@@ -25,8 +25,8 @@ userRouter.post('/', createUserController);
 userRouter.get('/:id', getUserByIdController);
 userRouter.delete('/:id', deleteUserByIdController);
 
-userRouter.patch('/:id/:firstName', modifyUserFirstNameController);
-userRouter.patch('/:id/:lastName', modifyUserLastNameController);
+userRouter.patch('/:id/firstName/:firstName', modifyUserFirstNameController);
+userRouter.patch('/:id/lastName/:lastName', modifyUserLastNameController);
 userRouter.patch('/:id/password', modifyUserPasswordController);
 userRouter.patch('/:id/description', modifyUserDescriptionController);
 
