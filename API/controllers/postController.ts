@@ -28,7 +28,7 @@ export const getAllPostsController = async (req: Request, res: Response) => {
         const posts = await getAllPosts();
         res.status(200).json(posts);
     } catch (error) {
-        res.status(500).json({error: `An error has occurred:\n${error}`});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 };
 
@@ -43,7 +43,7 @@ export const getLastPostsController = async (req: Request, res: Response) => {
         const posts = await getLastPosts(req.body.number);
         res.status(200).json(posts);
     } catch (error) {
-        res.status(500).json({error: `An error has occurred:\n${error}`});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -61,7 +61,7 @@ export const getPostByIdController = async (req: Request, res: Response) => {
         }
         res.status(200).json(post);
     } catch (error) {
-        res.status(500).json({error: `An error has occurred:\n${error}`});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 };
 
@@ -223,6 +223,6 @@ export const deletePostByIdController = async (req: Request, res: Response) => {
                 break
         }
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }

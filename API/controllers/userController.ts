@@ -27,7 +27,7 @@ export const getAllUsersController = async (req: Request, res: Response) => {
         const users = await getAllUsers();
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 };
 
@@ -45,7 +45,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
         }
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 };
 
@@ -169,7 +169,7 @@ export const createUserController = async (req: Request, res: Response) => {
         const newUser = await createUser(req.body);
         res.status(201).json(newUser);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 };
 
@@ -258,6 +258,6 @@ export const deleteUserByIdController = async (req: Request, res: Response) => {
                 break
         }
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }

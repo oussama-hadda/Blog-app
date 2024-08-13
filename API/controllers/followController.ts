@@ -15,7 +15,7 @@ export const getAllFollowsController = async (req: Request, res: Response) => {
         const follows = await getAllFollows();
         res.status(200).json(follows);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -34,7 +34,7 @@ export const getFollowController = async (req: Request, res: Response) => {
         }
         res.status(200).json(follow);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -51,7 +51,7 @@ export const createFollowController = async (req: Request, res: Response) => {
         const newFollow = await createFollow(req.body);
         res.status(201).json(newFollow);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`});'})
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -78,6 +78,6 @@ export const deleteFollowController = async (req: Request, res: Response) => {
                 break
         }
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }

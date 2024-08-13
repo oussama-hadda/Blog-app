@@ -22,7 +22,7 @@ export const getAllCommentsController = async (req: Request, res: Response) => {
         const comments = await getAllComments();
         res.status(200).json(comments);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -41,7 +41,7 @@ export const getCommentByIdController = async (req: Request, res: Response) => {
         }
         res.status(200).json(comment);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -58,7 +58,7 @@ export const createCommentController = async (req: Request, res: Response) => {
         const newComment = await createComment(req.body);
         res.status(201).json(newComment);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`});'})
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -102,6 +102,6 @@ export const deleteCommentByIdController = async (req: Request, res: Response) =
                 break
         }
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }

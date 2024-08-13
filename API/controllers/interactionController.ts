@@ -20,7 +20,7 @@ export const getAllInteractionsController = async (req: Request, res: Response) 
         const interactions = await getAllInteractions();
         res.status(200).json(interactions);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -39,7 +39,7 @@ export const getInteractionByIdController = async (req: Request, res: Response) 
         }
         res.status(200).json(interaction);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
@@ -56,7 +56,7 @@ export const createInteractionController = async (req: Request, res: Response) =
         const newInteraction = await createInteraction(req.body);
         res.status(201).json(newInteraction);
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}`});'})
+        res.status(500).json({error: `An error has occurred: ${error}`})
     }
 }
 
@@ -83,6 +83,6 @@ export const deleteInteractionByIdController = async (req: Request, res: Respons
                 break
         }
     } catch (error) {
-        res.status(500).json({error: 'An error has occurred:\n${error}'});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
