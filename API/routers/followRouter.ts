@@ -12,6 +12,6 @@ followRouter.get("/", getAllFollowsController);
 followRouter.post("/", createFollowController);
 
 followRouter.get("/:followerId/:followerId/", getFollowController);
-followRouter.delete("/:followerId//:followerId/", deleteFollowController);
+followRouter.delete("/:followerId//:followedId/", deleteFollowController);
 
 export default followRouter;
