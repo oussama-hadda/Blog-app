@@ -71,7 +71,7 @@ export const deleteFollowController = async (req: Request, res: Response) => {
                 res.status(404).json({message: 'Follow not found.'});
                 break
             case 1:
-                res.status(204);
+                res.status(204).json({message: 'Follow deleted successfully.'});
                 break
             default:
                 res.status(500);

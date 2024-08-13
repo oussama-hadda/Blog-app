@@ -95,7 +95,7 @@ export const deleteCommentByIdController = async (req: Request, res: Response) =
                 res.status(404).json({message: 'Comment not found.'});
                 break
             case 1:
-                res.status(204);
+                res.status(204).json({message: 'Comment deleted successfully.'});
                 break
             default:
                 res.status(500).json({error: 'An error has occurred.'});
