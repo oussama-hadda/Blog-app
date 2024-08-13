@@ -35,9 +35,7 @@ export const getUserInteractedPosts = async (userId: string, type: InteractionTy
         attributes: [],
         include: [{
             model: Post,
-            through: {
-                attributes: ['id', 'title', 'content'],
-            },
+            attributes: ['id', 'title', 'content'],
         },],
         where: {
             // @ts-ignore
@@ -61,9 +59,7 @@ export const getUserFollowers = async (userId: string) => {
         attributes: [],
         include: [{
             model: User,
-            through: {
-                attributes: ['id', 'fullName'],
-            },
+            attributes: ['id', 'fullName'],
         },],
     })
 
@@ -82,10 +78,8 @@ export const getUserFollowing = async (userId: string) => {
         attributes: [],
         include: [{
             model: User,
-            through: {
-                attributes: ['id', 'fullName'],
-            },
-        },],
+            attributes: ['id', 'fullName'],
+        }],
     })
 
     if (userFollowing.length === 0) {
@@ -136,7 +130,7 @@ export const modifyUser = async (id: string, field: string, fieldName: UserModif
     if (!user) {
         throw new Error('User not found');
     }
-    switch (fieldName){
+    switch (fieldName) {
         case "firstName":
             user.firstName = field;
             break;
