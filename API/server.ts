@@ -3,6 +3,7 @@ import sequelize from './config/database';
 import userRouter from "./routers/userRouter";
 import postRouter from "./routers/postRouter";
 import commentRouter from "./routers/commentRouter";
+import interactionRouter from "./routers/interactionRouter";
 
 const app = express();
 const PORT = 3000;
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/comments', commentRouter);
+app.use('/api/interactions', interactionRouter);
 
 // app.get('/', async (req: Request, res: Response) => {
 //     try {
