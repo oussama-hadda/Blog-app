@@ -4,6 +4,7 @@ import userRouter from "./routers/userRouter";
 import postRouter from "./routers/postRouter";
 import commentRouter from "./routers/commentRouter";
 import interactionRouter from "./routers/interactionRouter";
+import followRouter from "./routers/followRouter";
 
 const app = express();
 const PORT = 3000;
@@ -14,6 +15,7 @@ app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/comments', commentRouter);
 app.use('/api/interactions', interactionRouter);
+app.use('/api/follows', followRouter);
 
 // app.get('/', async (req: Request, res: Response) => {
 //     try {
@@ -33,7 +35,7 @@ app.use('/api/interactions', interactionRouter);
 // });
 
 
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync({alter: true}).then(() => {
     console.log('Database synced');
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
