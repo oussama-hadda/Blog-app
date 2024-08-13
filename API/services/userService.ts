@@ -56,7 +56,7 @@ export const getUserInteractedPosts = async (userId: string, type: InteractionTy
 export const getUserFollowers = async (userId: string) => {
     const usersFollowers = await Follow.findAll({
         where: {
-            followed: userId,
+            followedId: userId,
         },
         attributes: [],
         include: [{
@@ -77,7 +77,7 @@ export const getUserFollowers = async (userId: string) => {
 export const getUserFollowing = async (userId: string) => {
     const userFollowing = await Follow.findAll({
         where: {
-            follower: userId,
+            followerId: userId,
         },
         attributes: [],
         include: [{
@@ -98,7 +98,7 @@ export const getUserFollowing = async (userId: string) => {
 export const getUserFollowersNb = async (userId: string) => {
     const {count, rows} = await Follow.findAndCountAll({
         where: {
-            followed: userId,
+            followedId: userId,
         }
     })
 
@@ -112,7 +112,7 @@ export const getUserFollowersNb = async (userId: string) => {
 export const getUserFollowingNb = async (userId: string) => {
     const {count, rows} = await Follow.findAndCountAll({
         where: {
-            follower: userId,
+            followerId: userId,
         }
     })
 

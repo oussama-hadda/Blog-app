@@ -24,10 +24,10 @@ export function handleControllerError(res: Response, error: unknown, entity: ent
         if (error.message === `${entity} not found`) {
             res.status(404).json({error: `${entity} not found`});
         } else {
-            res.status(500).json({error: `An error has occurred: ${error.message}`});
+            res.status(500).json({error: `An error has occurred: ${error}`});
         }
     } else {
-        res.status(500).json({error: `An error has occurred: ${String(error)}`});
+        res.status(500).json({error: `An error has occurred: ${error}`});
     }
 }
 
