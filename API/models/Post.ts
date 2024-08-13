@@ -44,6 +44,9 @@ Post.init(
         tags: {
             type: DataTypes.JSON,
             allowNull: true,
+            get(){
+                return this.getDataValue("tags") ? this.getDataValue("tags") : [];
+            }
         },
     }, {
         sequelize
@@ -58,4 +61,3 @@ Comment.belongsTo(Post);
 
 Post.hasMany(Interaction);
 Interaction.belongsTo(Post);
-
