@@ -72,14 +72,32 @@ User.init(
 
 export default User;
 
-User.hasMany(Post);
-Post.belongsTo(User);
+User.hasMany(Post,
+    {
+        foreignKey: "userId",
+    });
+Post.belongsTo(User,
+    {
+        foreignKey: "userId",
+    });
 
-User.hasMany(Comment);
-Comment.belongsTo(User);
+User.hasMany(Comment,
+    {
+        foreignKey: "userId",
+    });
+Comment.belongsTo(User,
+    {
+        foreignKey: "userId",
+    });
 
-User.hasMany(Interaction);
-Interaction.belongsTo(User);
+User.hasMany(Interaction,
+    {
+        foreignKey: "userId",
+    });
+Interaction.belongsTo(User,
+    {
+        foreignKey: "userId",
+    });
 
 User.hasMany(Follow,
     {

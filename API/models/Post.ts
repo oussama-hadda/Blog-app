@@ -2,6 +2,7 @@ import {DataTypes, Model, Optional} from 'sequelize';
 import sequelize from '../config/database';
 import Comment from "./Comment";
 import Interaction from "./Interaction";
+import User from "./User";
 
 interface PostAttributes {
     id: string;
@@ -9,6 +10,7 @@ interface PostAttributes {
     content: string;
     category: string;
     tags: string[];
+    userId: string;
 }
 
 interface PostCreationAttributes extends Optional<PostAttributes, 'id'> {
@@ -20,6 +22,7 @@ class Post extends Model<PostAttributes, PostCreationAttributes> implements Post
     public content!: string;
     public category!: string;
     public tags!: string[];
+    public userId!: string;
 }
 
 Post.init(
@@ -44,9 +47,17 @@ Post.init(
         tags: {
             type: DataTypes.JSON,
             allowNull: true,
-            get(){
+            get() {
                 return this.getDataValue("tags") ? this.getDataValue("tags") : [];
             }
+        },
+        userId: {
+            type: DataTypes.UUID,
+            references: {
+                model: User,
+                key: 'id',
+            },
+            allowNull: false,
         },
     }, {
         sequelize
@@ -56,8 +67,20 @@ Post.init(
 export default Post;
 
 
-Post.hasMany(Comment);
-Comment.belongsTo(Post);
+Post.hasMany(Comment,
+    {
+        foreignKey: "postId",
+    });
+Comment.belongsTo(Post,
+    {
+        foreignKey: "postId",
+    });
 
-Post.hasMany(Interaction);
-Interaction.belongsTo(Post);
+Post.hasMany(Interaction,
+    {
+        foreignKey: "postId",
+    });
+Interaction.belongsTo(Post,
+    {
+        foreignKey: "postId",
+    });
