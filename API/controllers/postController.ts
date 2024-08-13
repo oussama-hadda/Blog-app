@@ -75,8 +75,8 @@ export const getPostsInCategoryController = async (req: Request, res: Response) 
     try {
         const categoryPosts = await getPostsInCategory(
             req.params.category,
-            req.params.offset ? parseInt(req.params.offset) : undefined,
-            req.params.limit ? parseInt(req.params.limit) : undefined,
+            req.body.offset ? parseInt(req.body.offset) : undefined,
+            req.body.limit ? parseInt(req.body.limit) : undefined,
         );
         res.status(200).json(categoryPosts);
     } catch (error) {
@@ -177,7 +177,7 @@ export const createPostController = async (req: Request, res: Response) => {
  */
 export const addTagController = async (req: Request, res: Response) => {
     try {
-        const newTags = await addTag(req.body.id, req.body.tag);
+        const newTags = await addTag(req.params.id, req.params.tag);
         res.status(201).json(newTags);
     } catch (error) {
         handleControllerError(res, error, 'Post');
@@ -195,7 +195,7 @@ export const addTagController = async (req: Request, res: Response) => {
  */
 export const deleteTagController = async (req: Request, res: Response) => {
     try {
-        const newTags = await deleteTag(req.body.id, req.body.tag);
+        const newTags = await deleteTag(req.params.id, req.params.tag);
         res.status(201).json(newTags);
     } catch (error) {
         handleControllerError(res, error, 'Post');
@@ -210,7 +210,7 @@ export const deleteTagController = async (req: Request, res: Response) => {
  */
 export const deletePostByIdController = async (req: Request, res: Response) => {
     try {
-        const deletedCount = await deletePostById(req.body.id);
+        const deletedCount = await deletePostById(req.params.id);
         switch (deletedCount) {
             case 0:
                 res.status(404).json({message: 'Post not found.'});

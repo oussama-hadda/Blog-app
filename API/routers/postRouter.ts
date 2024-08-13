@@ -26,11 +26,11 @@ postRouter.delete('/:id', deletePostByIdController);
 postRouter.get('/:id/comments', getPostCommentsController);
 postRouter.get('/:id/likes', getPostLikesController);
 postRouter.get('/:id/likes/number', getPostNbLikesController);
-postRouter.patch('/:id/tag', addTagController);
-postRouter.delete('/:id/tag', deleteTagController);
+postRouter.patch('/:id/:tag', addTagController);
+postRouter.delete('/:id/:tag', deleteTagController);
 
-postRouter.get('/category', getPostsInCategoryController);
-postRouter.get('/category/dates', getPostsBetween2DatesInCategoryController);
+postRouter.get('/:category', getPostsInCategoryController);
+postRouter.get('/:category/dates', getPostsBetween2DatesInCategoryController);
 
 
 export default postRouter;

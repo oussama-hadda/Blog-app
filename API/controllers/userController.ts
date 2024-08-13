@@ -183,7 +183,7 @@ export const createUserController = async (req: Request, res: Response) => {
  */
 export const modifyUserFirstNameController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.body.id, req.body.firstName, "firstName");
+        const newUser = modifyUser(req.params.id, req.params.firstName, "firstName");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -198,7 +198,7 @@ export const modifyUserFirstNameController = async (req: Request, res: Response)
  */
 export const modifyUserLastNameController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.body.id, req.body.lastName, "lastName");
+        const newUser = modifyUser(req.params.id, req.params.lastName, "lastName");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -213,7 +213,7 @@ export const modifyUserLastNameController = async (req: Request, res: Response) 
  */
 export const modifyUserPasswordController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.body.id, req.body.password, "password");
+        const newUser = modifyUser(req.params.id, req.body.password, "password");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -228,7 +228,7 @@ export const modifyUserPasswordController = async (req: Request, res: Response) 
  */
 export const modifyUserDescriptionController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.body.id, req.body.description, "description");
+        const newUser = modifyUser(req.params.id, req.body.description, "description");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -245,7 +245,7 @@ export const modifyUserDescriptionController = async (req: Request, res: Respons
  */
 export const deleteUserByIdController = async (req: Request, res: Response) => {
     try {
-        const deletedCount = await deleteUserById(req.body.id);
+        const deletedCount = await deleteUserById(req.params.id);
         switch (deletedCount) {
             case 0:
                 res.status(404).json({message: 'User not found.'});

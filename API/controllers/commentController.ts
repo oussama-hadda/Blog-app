@@ -72,7 +72,7 @@ export const createCommentController = async (req: Request, res: Response) => {
  */
 export const changeCommentContentController = async (req: Request, res: Response) => {
     try {
-        const newComment = await changeCommentContent(req.body.id, req.body.content);
+        const newComment = await changeCommentContent(req.params.id, req.body.content);
         res.status(200).json(newComment);
     } catch (error) {
         handleControllerError(res, error, "Comment");
@@ -89,7 +89,7 @@ export const changeCommentContentController = async (req: Request, res: Response
  */
 export const deleteCommentByIdController = async (req: Request, res: Response) => {
     try {
-        const deletedCount = await deleteCommentById(req.body.id);
+        const deletedCount = await deleteCommentById(req.params.id);
         switch (deletedCount) {
             case 0:
                 res.status(404).json({message: 'Comment not found.'});

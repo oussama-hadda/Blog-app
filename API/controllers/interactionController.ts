@@ -70,7 +70,7 @@ export const createInteractionController = async (req: Request, res: Response) =
  */
 export const deleteInteractionByIdController = async (req: Request, res: Response) => {
     try {
-        const deletedCount = await deleteInteractionById(req.body.id);
+        const deletedCount = await deleteInteractionById(req.params.id);
         switch (deletedCount) {
             case 0:
                 res.status(404).json({message: 'Interaction not found.'});

@@ -11,7 +11,7 @@ const followRouter = Router()
 followRouter.get("/", getAllFollowsController);
 followRouter.post("/", createFollowController);
 
-followRouter.get("/:followerId", getFollowController);
-followRouter.delete("/:followerId", deleteFollowController);
+followRouter.get("/:followerId/:followerId/", getFollowController);
+followRouter.delete("/:followerId//:followerId/", deleteFollowController);
 
 export default followRouter;
