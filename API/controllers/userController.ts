@@ -57,7 +57,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
  */
 export const getUserPostsController = async (req: Request, res: Response) => {
     try {
-        const posts = getUserPosts(req.params.id);
+        const posts = await getUserPosts(req.params.id);
         res.status(200).json(posts);
     } catch (error) {
         handleControllerError(res, error);
@@ -73,7 +73,7 @@ export const getUserPostsController = async (req: Request, res: Response) => {
  */
 export const getUserLikedPostsController = async (req: Request, res: Response) => {
     try {
-        const posts = getUserInteractedPosts(req.params.id, "like");
+        const posts = await getUserInteractedPosts(req.params.id, "like");
         res.status(200).json(posts);
     } catch (error) {
         handleControllerError(res, error);
@@ -88,7 +88,7 @@ export const getUserLikedPostsController = async (req: Request, res: Response) =
  */
 export const getUserBookmarkedPostsController = async (req: Request, res: Response) => {
     try {
-        const posts = getUserInteractedPosts(req.params.id, "bookmark");
+        const posts = await getUserInteractedPosts(req.params.id, "bookmark");
         res.status(200).json(posts);
     } catch (error) {
         handleControllerError(res, error);
@@ -183,7 +183,7 @@ export const createUserController = async (req: Request, res: Response) => {
  */
 export const modifyUserFirstNameController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.params.id, req.params.firstName, "firstName");
+        const newUser = await modifyUser(req.params.id, req.params.firstName, "firstName");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -198,7 +198,7 @@ export const modifyUserFirstNameController = async (req: Request, res: Response)
  */
 export const modifyUserLastNameController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.params.id, req.params.lastName, "lastName");
+        const newUser = await modifyUser(req.params.id, req.params.lastName, "lastName");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -213,7 +213,7 @@ export const modifyUserLastNameController = async (req: Request, res: Response) 
  */
 export const modifyUserPasswordController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.params.id, req.body.password, "password");
+        const newUser = await modifyUser(req.params.id, req.body.password, "password");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);
@@ -228,7 +228,7 @@ export const modifyUserPasswordController = async (req: Request, res: Response) 
  */
 export const modifyUserDescriptionController = async (req: Request, res: Response) => {
     try {
-        const newUser = modifyUser(req.params.id, req.body.description, "description");
+        const newUser = await modifyUser(req.params.id, req.body.description, "description");
         res.status(201).json(newUser);
     } catch (error) {
         handleControllerError(res, error);

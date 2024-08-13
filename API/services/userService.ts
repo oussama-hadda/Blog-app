@@ -157,7 +157,7 @@ export const modifyUser = async (id: string, field: string, fieldName: UserModif
 /* DELETE requests */
 
 export const deleteUserById = async (userId: string) => {
-    return User.destroy({
+    return await User.destroy({
         where: {
             id: userId
         }

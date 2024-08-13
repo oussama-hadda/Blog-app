@@ -144,7 +144,7 @@ export const deleteTag = async (postId: string, tag: string) => {
 }
 
 export const deletePostById = async (postId: string) => {
-    return Post.destroy({
+    return await Post.destroy({
         where: {
             id: postId,
         }
