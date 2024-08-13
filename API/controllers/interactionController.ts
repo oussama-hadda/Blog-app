@@ -76,7 +76,7 @@ export const deleteInteractionByIdController = async (req: Request, res: Respons
                 res.status(404).json({message: 'Interaction not found.'});
                 break
             case 1:
-                res.status(204).json({message: 'Interaction deleted successfully.'});
+                res.status(204);
                 break
             default:
                 res.status(500).json({error: 'An error has occurred.'});

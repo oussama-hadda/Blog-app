@@ -216,7 +216,7 @@ export const deletePostByIdController = async (req: Request, res: Response) => {
                 res.status(404).json({message: 'Post not found.'});
                 break
             case 1:
-                res.status(204).json({message: 'Post deleted successfully.'});
+                res.status(204);
                 break
             default:
                 res.status(500).json({error: 'An error has occurred.`'});
