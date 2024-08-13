@@ -5,7 +5,7 @@ import Interaction from "./Interaction";
 
 interface PostAttributes {
     id: string;
-    Title: string;
+    title: string;
     content: string;
     category: string;
     tags: string[];
@@ -16,7 +16,7 @@ interface PostCreationAttributes extends Optional<PostAttributes, 'id'> {
 
 class Post extends Model<PostAttributes, PostCreationAttributes> implements PostAttributes {
     public id!: string;
-    public Title!: string;
+    public title!: string;
     public content!: string;
     public category!: string;
     public tags!: string[];
@@ -29,7 +29,7 @@ Post.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        Title: {
+        title: {
             type: DataTypes.STRING(128),
             allowNull: false,
         },
