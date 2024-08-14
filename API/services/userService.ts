@@ -59,9 +59,18 @@ export const getUserFollowers = async (userId: string) => {
         attributes: [],
         include: [{
             model: User,
-            attributes: ['id', 'fullName'],
-        },],
+            as: "Follower",
+            attributes: ['id', 'firstName', 'lastName'],
+        }],
     })
+        .then(userFollowers => userFollowers.map( // Flatten userFollowers and get fullName
+            follow => ({
+                // @ts-ignore
+                "id": follow.Follower.id,
+                // @ts-ignore
+                "fullName": `${follow.Follower.firstName} ${follow.Follower.lastName}`,
+            })
+        ))
 
     if (usersFollowers.length === 0) {
         await handleUserServiceError(userId);
@@ -78,9 +87,18 @@ export const getUserFollowing = async (userId: string) => {
         attributes: [],
         include: [{
             model: User,
-            attributes: ['id', 'fullName'],
+            as: "Followed",
+            attributes: ['id', 'firstName', 'lastName'],
         }],
     })
+        .then(userFollowing => userFollowing.map(
+            follow => ({
+                // @ts-ignore
+                "id": follow.Followed.id,
+                // @ts-ignore
+                "fullName": `${follow.Followed.firstName} ${follow.Followed.lastName}`,
+            })
+        ))
 
     if (userFollowing.length === 0) {
         await handleUserServiceError(userId);

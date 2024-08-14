@@ -102,17 +102,21 @@ Interaction.belongsTo(User,
 User.hasMany(Follow,
     {
         foreignKey: "followerId",
+        as: "Following",
     });
 Follow.belongsTo(User,
     {
         foreignKey: "followerId",
+        as: "Follower",
     });
 
 User.hasMany(Follow,
     {
         foreignKey: "followedId",
+        as: "Followers",
     });
 Follow.belongsTo(User,
     {
         foreignKey: "followedId",
+        as: "Followed",
     });

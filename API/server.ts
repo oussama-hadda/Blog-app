@@ -35,7 +35,7 @@ app.use('/api/follows', followRouter);
 // });
 
 
-sequelize.sync({alter: true}).then(() => {
+sequelize.sync().then(() => {
     console.log('Database synced');
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);

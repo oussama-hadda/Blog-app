@@ -44,8 +44,12 @@ export async function handlePostServiceError(postId: string) {
 export async function handleCategoryServiceError(categoryName: string) {
     const categoryNames = await Post.findAll({
         attributes: [
-            [fn('DISTINCT', col("category)")), "uniqueCategoryNames"]
+            [fn('DISTINCT', col("category")), 'uniqueCategoryName'],
         ],
+        raw: true,
     })
-    if (!(categoryName in categoryNames)) throw new Error("Category not found")
+        // @ts-ignore
+        .then(categoryNames => categoryNames.map(categoryName=> categoryName.uniqueCategoryName ))
+
+    if (!categoryNames.includes(categoryName)) throw new Error("Category not found")
 }

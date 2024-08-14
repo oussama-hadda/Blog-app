@@ -40,7 +40,7 @@ export const getAllPostsController = async (req: Request, res: Response) => {
  */
 export const getLastPostsController = async (req: Request, res: Response) => {
     try {
-        const posts = await getLastPosts(req.body.number);
+        const posts = await getLastPosts(parseInt(req.params.number));
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({error: `An error has occurred: ${error}`});
@@ -57,7 +57,7 @@ export const getPostByIdController = async (req: Request, res: Response) => {
     try {
         const post = await getPostById(req.params.id);
         if (!post) {
-            return res.status(404).json({error: 'Utilisateur non trouvé'});
+            return res.status(404).json({error: 'User not found'});
         }
         res.status(200).json(post);
     } catch (error) {

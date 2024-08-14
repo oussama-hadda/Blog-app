@@ -24,6 +24,7 @@ export const changeCommentContent = async (id: string, content: string) => {
         throw new Error('Comment not found');
     }
     comment.content = content;
+    await comment.save();
     return comment;
 }
 

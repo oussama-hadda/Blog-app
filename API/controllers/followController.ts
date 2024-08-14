@@ -65,7 +65,7 @@ export const createFollowController = async (req: Request, res: Response) => {
  */
 export const deleteFollowController = async (req: Request, res: Response) => {
     try {
-        const deletedCount = await deleteFollow(req.params.followedId, req.params.followedId);
+        const deletedCount = await deleteFollow(req.params.followerId, req.params.followedId);
         switch (deletedCount) {
             case 0:
                 res.status(404).json({message: 'Follow not found.'});

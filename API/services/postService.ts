@@ -25,6 +25,7 @@ export const getPostById = async (id: string) => {
 
 export const getPostsInCategory = async (category: string, offset?: number, limit?: number) => {
     let categoryPosts: Post[]
+    console.log("getting categoryPosts...")
     switch (limit) {
         case undefined:
             categoryPosts = await Post.findAll({
@@ -56,14 +57,16 @@ export const getPostsBetween2DatesInCategory = async (category: string, firstDat
             category: category,
             // @ts-ignore
             createdAt: {
-                [Op.lt]: firstDate,
-                [Op.gt]: secondDate
+                [Op.gt]: firstDate,
+                [Op.lt]: secondDate
             }
         },
     })
     if (categoryPosts.length === 0) {
         await handleCategoryServiceError(category);
     }
+
+    return categoryPosts;
 }
 
 export const getPostComments = async (postId: string) => {
@@ -121,9 +124,10 @@ export const addTag = async (postId: string, tag: string) => {
     if (!post) {
         throw new Error('Post not found');
     }
-    const tags = post.tags;
+    const tags = post.tags.slice();
     tags.push(tag);
     post.tags = tags;
+    await post.save();
     return tags;
 }
 
@@ -134,12 +138,13 @@ export const deleteTag = async (postId: string, tag: string) => {
     if (!post) {
         throw new Error('Post not found');
     }
-    const tags = post.tags;
+    const tags = post.tags.slice();
     const idx = tags.indexOf(tag);
     if (idx !== -1) {
         tags.splice(idx, 1);
     }
     post.tags = tags;
+    await post.save();
     return tags;
 }
 
