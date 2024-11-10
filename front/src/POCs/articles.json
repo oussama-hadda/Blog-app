@@ -1,0 +1,112 @@
+[
+  {
+    "imageUrl": "/images/beach.jpg",
+    "category": "Travel",
+    "date": "12 Jan 2024",
+    "readTime": "5 mins read",
+    "title": "A Day at the Beach",
+    "description": "Experience the sun, sand, and sea as we explore the best beach destinations this season.",
+    "authorName": "Alice Johnson",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/mountain1.jpg",
+    "category": "Adventure",
+    "date": "18 Jan 2024",
+    "readTime": "7 mins read",
+    "title": "Conquering the Mountains",
+    "description": "Join us on a thrilling mountain adventure and uncover breathtaking landscapes.",
+    "authorName": "John Smith",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/sun.jpg",
+    "category": "Nature",
+    "date": "20 Feb 2024",
+    "readTime": "6 mins read",
+    "title": "Sunrise Over the Hills",
+    "description": "Witness the beauty of a new day as the sun rises over scenic landscapes.",
+    "authorName": "Emma Davis",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/desert1.jpg",
+    "category": "Hiking",
+    "date": "28 Feb 2024",
+    "readTime": "8 mins read",
+    "title": "The Ultimate Hiking Guide",
+    "description": "Prepare for a hiking journey with tips, routes, and gear recommendations.",
+    "authorName": "Michael Brown",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/nature2.jpg",
+    "category": "Wildlife",
+    "date": "10 Mar 2024",
+    "readTime": "4 mins read",
+    "title": "Exploring Wildlife in Nature",
+    "description": "Discover the amazing wildlife that roams freely in untouched natural landscapes.",
+    "authorName": "Sophia Wilson",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/nature3.jpg",
+    "category": "Photography",
+    "date": "15 Mar 2024",
+    "readTime": "9 mins read",
+    "title": "Capturing the Beauty of Nature",
+    "description": "Learn how to take stunning nature photos with these essential photography tips.",
+    "authorName": "Lucas Martinez",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/nature4.jpg",
+    "category": "Travel",
+    "date": "22 Mar 2024",
+    "readTime": "6 mins read",
+    "title": "Hidden Gems in Nature",
+    "description": "Uncover lesser-known natural wonders that are waiting to be explored.",
+    "authorName": "Isabella Clark",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/sky.jpg",
+    "category": "Photography",
+    "date": "25 Mar 2024",
+    "readTime": "3 mins read",
+    "title": "Sky Gazing: A Photographer's Dream",
+    "description": "Capture the mesmerizing beauty of the skies, from sunrise to starry nights.",
+    "authorName": "David Lee",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/waterfall.jpg",
+    "category": "Adventure",
+    "date": "30 Mar 2024",
+    "readTime": "8 mins read",
+    "title": "Chasing Waterfalls",
+    "description": "Discover the most beautiful waterfalls around the world and plan your next adventure.",
+    "authorName": "Olivia Thompson",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/lake.jpg",
+    "category": "Nature",
+    "date": "05 Apr 2024",
+    "readTime": "6 mins read",
+    "title": "A Tranquil Day at the Lake",
+    "description": "Relax by the serene waters of a pristine lake and enjoy the peaceful surroundings.",
+    "authorName": "Sophia Wilson",
+    "authorImageUrl": "/images/default_profile.jpg"
+  },
+  {
+    "imageUrl": "/images/mountain2.jpg",
+    "category": "Adventure",
+    "date": "12 Apr 2024",
+    "readTime": "7 mins read",
+    "title": "Mountain Escape",
+    "description": "Escape to the mountains for an unforgettable adventure and breathtaking views.",
+    "authorName": "James Martin",
+    "authorImageUrl": "/images/default_profile.jpg"
+  }
+]
