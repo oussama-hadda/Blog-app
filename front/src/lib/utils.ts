@@ -1,20 +1,23 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
 import articlesData from "../POCs/articles.json"
+import {Article} from "@/lib/Definitions";
 
 
 const articles = articlesData as Article[];
 const ITEMS_PER_PAGE = 9;
+const DESCRIPTION_LENGTH = 150;
+const TITLE_MAX_LENGTH = 40;
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
-}
+};
 
 function isInArticle(article: Article, query: string): boolean {
     const fieldsToCheck = [
         article.category,
         article.title,
-        article.description,
+        article.content,
         article.authorName,
     ];
     const lowerQuery = query.toLowerCase();
@@ -27,7 +30,7 @@ function isInArticle(article: Article, query: string): boolean {
 export function fetchFilteredArticles(query?: string, category?: string, page?: number): Article[] {
 
     const filteredArticles = articles.filter(article => {
-        const matchesCategory = category ? article.category === category : true;
+        const matchesCategory = category ? article.category.toLowerCase() === category : true;
         const matchesQuery = query ? isInArticle(article, query) : true;
         return matchesCategory && matchesQuery;
     });
@@ -39,25 +42,25 @@ export function fetchFilteredArticles(query?: string, category?: string, page?: 
     }
 
     return filteredArticles;
-}
+};
 
 
 export function fetchImageURLs(category?: string): string[] {
     const filteredArticles = category
-        ? articles.filter(article => article.category === category)
+        ? articles.filter(article => article.category.toLowerCase() === category)
         : articles;
 
     return filteredArticles
         .map(article => article.imageUrl)
         .filter((url): url is string => url !== undefined); // TODO: what if an image is missing?
-}
+};
 
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
     // If the total number of pages is 7 or less,
     // display all pages without any ellipsis.
     if (totalPages <= 7) {
-        return Array.from({ length: totalPages }, (_, i) => i + 1);
+        return Array.from({length: totalPages}, (_, i) => i + 1);
     }
 
     // If the current page is among the first 3 pages,
@@ -86,3 +89,18 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     ];
 };
 
+function reduceLength(content: string, maxLength: number) {
+    if (content.length > maxLength) {
+        return content.slice(0, maxLength) + '...';
+    } else {
+        return content;
+    }
+}
+
+export function getArticleDescription(content: string) {
+    return reduceLength(content, DESCRIPTION_LENGTH)
+}
+
+export function reduceArticleTitleLength(title: string) {
+    return reduceLength(title, TITLE_MAX_LENGTH)
+}

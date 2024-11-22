@@ -1,21 +1,21 @@
+'use client';
+
 import Link from "next/link";
 
-const navElements = [
-    { href: '#', name: 'Hotel' },
-    { href: '#', name: 'Flight' },
-    { href: '#', name: 'Train' },
-    { href: '#', name: 'Travel' },
-    { href: '#', name: 'Car Rental' },
-]
+import { useParams } from "next/navigation";
+import {categories} from "@/lib/Definitions";
 
 const NavBar = () => {
+    const params = useParams<{ category: string }>();
+    const currentCategory = params.category;
+
     return (
-        <nav className="flex space-x-6">
-            {navElements.map((element) => (
+        <nav className="flex flex-col lg:flex-row lg:space-x-6 space-y-2 lg:space-y-0">
+            {categories.map((category) => (
                 <Link
-                    key={element.name}
-                    href={element.href}
-                    className="
+                    key={category}
+                    href={`/${category.toLowerCase()}`}
+                    className={`
                         relative
                         hover:text-cyan-400
                         active:text-cyan-600
@@ -24,13 +24,21 @@ const NavBar = () => {
                         ease-in-out
                         hover:scale-105
                         active:scale-95
-                    "
+                        ${
+                        category.toLowerCase() === currentCategory
+                            ? "text-cyan-400 scale-105"
+                            : ""
+                    }
+                    `}
                 >
-                    <span className="hover-underline">{element.name}</span>
+                    <span className={`hover-underline ${category.toLowerCase() === currentCategory ? 'active-underline' : ''}`}>
+                        {category}
+                    </span>
                 </Link>
             ))}
             <style jsx>{`
-                .hover-underline::after {
+                .hover-underline::after,
+                .active-underline::after {
                     content: '';
                     position: absolute;
                     left: 0;
@@ -42,13 +50,20 @@ const NavBar = () => {
                     transition: transform 0.3s ease;
                 }
 
-                .hover-underline:hover::after {
+                .hover-underline:hover::after,
+                .active-underline::after {
                     transform: scaleX(1);
+                }
+
+                @media (max-width: 1024px) {
+                    .hover-underline::after,
+                    .active-underline::after {
+                        bottom: -1px;
+                    }
                 }
             `}</style>
         </nav>
-    )
-}
+    );
+};
 
-
-export default NavBar
+export default NavBar;

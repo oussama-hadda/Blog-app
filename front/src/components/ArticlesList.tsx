@@ -1,16 +1,8 @@
 import ArticleCard from "@/components/ArticleCard";
 import Pagination from "@/components/Pagination";
+import {Article} from "@/lib/Definitions";
+import {motion} from "framer-motion";
 
-interface Article {
-    imageUrl: string;
-    category: string;
-    date: string;
-    readTime: string;
-    title: string;
-    description: string;
-    authorName: string;
-    authorImageUrl: string;
-}
 
 interface IArticleList {
     articles: Article[];
@@ -20,23 +12,31 @@ interface IArticleList {
 
 const ArticlesList: React.FC<IArticleList> = ({articles, totalPages}) => {
 
+
     return (
         <div className="min-h-screen p-8 flex justify-center">
             {(articles.length !== 0) &&
                 <div className="flex flex-col justify-center items-center">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {articles.map((article, index) => (
-                            <ArticleCard
+                            <motion.div
                                 key={index}
-                                imageUrl={article.imageUrl}
-                                category={article.category}
-                                date={article.date}
-                                readTime={article.readTime}
-                                title={article.title}
-                                description={article.description}
-                                authorName={article.authorName}
-                                authorImageUrl={article.authorImageUrl}
-                            />
+                                initial={{opacity: 0, y: 20}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{duration: 0.3, delay: index * 0.1}}
+                            >
+                                <ArticleCard
+                                    articleID={article.id}
+                                    imageUrl={article.imageUrl}
+                                    category={article.category}
+                                    date={article.date}
+                                    readTime={article.readTime}
+                                    title={article.title}
+                                    content={article.content}
+                                    authorName={article.authorName}
+                                    authorImageUrl={article.authorImageUrl}
+                                />
+                            </motion.div>
                         ))}
                     </div>
                     <div className="mt-5 flex w-full justify-center">
